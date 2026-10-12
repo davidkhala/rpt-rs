@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `nb-NO` (Norwegian Bokmål) built-in locale: decimal comma, no-break-space thousands separator, `dd.MM.yyyy` dates,
   24-hour clock, Norwegian month and weekday names. `no` and `nn` resolve to it. Values follow Windows nb-NO.
 
+### Fixed
+
+- A suppressed page footer no longer reserves room at the bottom of the page body. Its design height was held back
+  whether or not it printed, so content pinned to the bottom of the page (a footer with "Print at Bottom of Page") sat
+  that much too high.
+
 ## [0.4.0]
 
 More than 340 tracked issues went into this release.
