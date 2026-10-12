@@ -59,6 +59,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   locale's system default. `TextRun` gains an optional `format`, decoded from the `FieldFormat` block streamed after
   each embedded-field record (`0xc4`); an integer field with a 0-decimal number slot no longer prints as `63,161.00`.
 
+### Fixed
+
+- A bare numeric `ToText`/`CStr` (one that names no separators) now prints with the render locale's decimal and
+  thousands separators instead of always using the en-US pair, so a formula-built string such as `CStr({Line.Price})`
+  matches the formatted fields (`1 323,00` under `nb-NO`). `EvalContext` gains `number_separators()`; the render path
+  supplies the locale's through the formula registry.
+
 ## [0.4.0]
 
 More than 340 tracked issues went into this release.
