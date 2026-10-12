@@ -66,6 +66,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   matches the formatted fields (`1 323,00` under `nb-NO`). `EvalContext` gains `number_separators()`; the render path
   supplies the locale's through the formula registry.
 
+### Fixed
+
+- `rpt-query`: a table that is the target of several links (a lookup keyed from two tables) now gets all of them in
+  its join's `ON`, not only the one that placed it. The report stores both links, but only the first was used, so
+  `LEFT JOIN Prices ON Invoice.FirmID = Prices.FirmID` also matched every other customer's price row for the firm and
+  duplicated the detail lines. Only forward links into the table, from tables placed before it, are added; a link in
+  the other direction, or between two already-placed tables, stays out of the `ON` as before.
+
 ## [0.4.0]
 
 More than 340 tracked issues went into this release.
