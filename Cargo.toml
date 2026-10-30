@@ -100,12 +100,12 @@ miniz_oxide = "0.9"
 thiserror = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-rand_chacha = { version = "0.9", default-features = false }
+rand_chacha = { version = "0.10", default-features = false }
 rand_core = "0.10"
 # Render/data pipeline third-party deps. Hoisted so a version can't drift into two compiled copies
 # (fontdb especially: one version across the pdf and text crates). Per-crate feature sets and
 # `optional`/`default-features` stay at the leaf via `name = { workspace = true, ... }`.
-fontdb = "0.24"
+fontdb = "0.23"
 ttf-parser = "0.25"
 cosmic-text = "0.19"
 krilla = { version = "0.8.2", default-features = false }

@@ -8,7 +8,7 @@
 //! generated corpus byte-identical everywhere.
 
 use rand_chacha::ChaCha8Rng;
-use rand_core::{RngCore, SeedableRng};
+use rand_core::{Rng as _, SeedableRng};
 
 /// A deterministic, platform-stable pseudo-random source.
 pub(crate) struct Rng {
