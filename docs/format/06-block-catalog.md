@@ -505,7 +505,10 @@ and display string).
 
 ### `0x00c0` — TextObjectFormat
 
-A text or heading object's paragraph format, including alignment (in byte 12).
+A text or heading object's paragraph format, including alignment (in byte 12). The alignment uses the shared `Alignment`
+codes (`1` left, `2` centre, `3` right, `4` justified) and is exported per paragraph as `horizontal_alignment`, next to
+`indent`; a text object can mix alignments across its paragraphs, so it can differ from the object-level
+`format.horizontal_alignment`.
 
 ### `0x00fe` — AreaSectionFormat
 

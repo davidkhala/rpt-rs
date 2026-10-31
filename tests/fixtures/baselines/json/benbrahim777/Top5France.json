@@ -693,6 +693,7 @@
                       "max_lines": 0,
                       "paragraphs": [
                         {
+                          "horizontal_alignment": "LeftAlign",
                           "indent": {
                             "first_line_indent": 0,
                             "left_indent": 0,
@@ -820,6 +821,7 @@
                       "max_lines": 0,
                       "paragraphs": [
                         {
+                          "horizontal_alignment": "LeftAlign",
                           "indent": {
                             "first_line_indent": 0,
                             "left_indent": 0,
@@ -1543,6 +1545,7 @@
                       "max_lines": 0,
                       "paragraphs": [
                         {
+                          "horizontal_alignment": "LeftAlign",
                           "indent": {
                             "first_line_indent": 0,
                             "left_indent": 0,

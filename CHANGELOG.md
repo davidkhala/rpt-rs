@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- `json-dump` now exports each text paragraph's own `horizontal_alignment` (decoded from the `0x00c0`
+  `TextObjectFormat` record, using the same enum names as the object-level `format.horizontal_alignment`), next to
+  `indent`. A text object can mix alignments per paragraph, so the object-level value alone was not enough.
 - `rpt-formula`: embedding applications can implement `EvalContext::call_function` to evaluate
   explicit calls to host-provided functions in both the VM and reference evaluator. Built-in names
   stay reserved; existing contexts retain their behavior through the default implementation.

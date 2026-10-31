@@ -529,20 +529,22 @@ impl<'a> RdWalk<'a> {
                 raw: row.u("line_spacing"),
             },
         };
+        let alignment = row
+            .get("horizontal_alignment")
+            .and_then(Cell::u)
+            .map(|a| Alignment::from_code(a as i32));
         if let Some(t) = self.text() {
             if !t.display.is_empty() {
                 t.display.push('\n');
             }
             t.paragraphs.push(crate::model::Paragraph {
                 indent,
+                horizontal_alignment: alignment.unwrap_or_default(),
                 ..Default::default()
             });
         }
-        if let (Some(obj), Some(a)) = (
-            self.object(),
-            row.get("horizontal_alignment").and_then(Cell::u),
-        ) {
-            obj.format.horizontal_alignment = Alignment::from_code(a as i32);
+        if let (Some(obj), Some(a)) = (self.object(), alignment) {
+            obj.format.horizontal_alignment = a;
         }
     }
 

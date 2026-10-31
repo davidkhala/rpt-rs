@@ -2,7 +2,8 @@
 
 use super::data_def::GroupCondition;
 use super::enums::{
-    FieldValueType, ImageFormat, LineSpacingType, PictureType, ReadingOrder, SummaryOperation,
+    Alignment, FieldValueType, ImageFormat, LineSpacingType, PictureType, ReadingOrder,
+    SummaryOperation,
 };
 use super::format::{Border, FieldFormat, Font, FontColor, ObjectFormat};
 use super::primitives::{Color, Formula, RecordRef, Rect, Twips};
@@ -185,6 +186,11 @@ pub struct Paragraph {
     /// Decoded from the `0x00c0` paragraph-format record; `LeftIndent` is the only member that
     /// is ever non-zero in practice.
     pub indent: IndentAndSpacingFormat,
+    /// The paragraph's own horizontal alignment (`LeftAlign`, `HorizontalCenterAlign`,
+    /// `RightAlign`, `Justified`), decoded from the same `0x00c0` record. A text object can mix
+    /// alignments per paragraph, so this can differ from the object-level
+    /// `format.horizontal_alignment`.
+    pub horizontal_alignment: Alignment,
 }
 
 /// SDK: `IIndentAndSpacingFormat` — a paragraph's left/right/first-line indentation, in twips.
