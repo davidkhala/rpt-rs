@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- PostgreSQL connections now support TLS (rustls, verifying the server certificate and host name against the OS trust
+  store). The connection URL's `sslmode` selects the behaviour: `disable`, `prefer` (default; TLS when the server
+  offers it) or `require` (fail unless encrypted). Previously every connection was plaintext.
 - `json-dump` now exports each text paragraph's own `horizontal_alignment` (decoded from the `0x00c0`
   `TextObjectFormat` record, using the same enum names as the object-level `format.horizontal_alignment`), next to
   `indent`. A text object can mix alignments per paragraph, so the object-level value alone was not enough.

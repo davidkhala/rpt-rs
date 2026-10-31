@@ -295,6 +295,9 @@ DATABASE CONFIGURATION (--db):
         export DATABASE_URL='postgres://rpt:secret@db.internal:5432/sales'
         rpt-render report.rpt --db -o out.pdf
 
+    postgres uses TLS per the URL's ?sslmode= (disable | prefer, the default | require); when TLS is used the server
+    certificate is always verified against the OS trust store. Use ?sslmode=require for any remote server.
+
     postgres, sqlite and mssql are implemented (mssql needs a build with --features db-mssql); mysql
     and mariadb are recognized (the scheme is understood) but not yet implemented.
 

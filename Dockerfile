@@ -35,6 +35,11 @@ FROM scratch AS runtime
 # Static binaries, so no libc, shell, or package manager is needed.
 COPY --from=builder /out/rpt /out/rpt-render /usr/local/bin/
 
+# `scratch` has no trust store, and the PostgreSQL driver verifies the server certificate against the OS
+# roots whenever it uses TLS. Without a CA bundle every TLS connection fails verification, so carry the
+# builder's (Debian ca-certificates) at the path rustls-native-certs probes first.
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+
 # The binaries link every dependency and embed the bundled fonts, so the image redistributes them
 # and owes their notices. `scratch` has no shell to read these with — they are here so that whoever
 # redistributes the image can extract them (`docker cp`) and satisfy the same conditions.

@@ -121,6 +121,17 @@ history. The URL **scheme** selects the backend:
 | `sqlite:///path/to/file.db` (or `sqlite::memory:`)         | implemented                     |
 | `mysql://` · `mariadb://` · `mssql://` (or `sqlserver://`) | recognized, not yet implemented |
 
+PostgreSQL connections use TLS according to the URL's `sslmode` query parameter: `disable` (never), `prefer` (the
+default: TLS when the server offers it, otherwise plaintext) or `require` (fail unless encrypted). Use `require` for any
+server that is not on the local machine or a trusted network, since `prefer` can be downgraded to plaintext. When TLS is
+used the server certificate and host name are always verified against the operating system's trust store, so a server with
+a private CA needs that CA installed there. A server that offers TLS with a certificate the OS does not trust fails under
+`prefer` as well (there is no fallback to plaintext after a failed handshake); install its CA, or use `sslmode=disable`:
+
+```sh
+RPT_DB_URL='postgres://user:pass@db.example.com:5432/dbname?sslmode=require'
+```
+
 For a single-server report, set `RPT_DB_URL` (or the 12-factor `DATABASE_URL` fallback; `RPT_DB_URL` takes precedence).
 A report plus its subreports can read from more than one server; each distinct server gets its own
 `RPT_DB_URL_<SERVER>` variable, where `<SERVER>` is the server name upper-cased with non-alphanumerics turned to `_`.

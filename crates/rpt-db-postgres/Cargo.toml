@@ -16,6 +16,8 @@ rpt-model = { workspace = true, features = ["serde"] }
 rpt-data = { workspace = true }
 rpt-query = { workspace = true }
 postgres = { workspace = true }
+rustls = { workspace = true }
+tokio-postgres-rustls = { workspace = true }
 thiserror = { workspace = true }
 
 [lints]

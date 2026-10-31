@@ -113,6 +113,10 @@ cosmic-text = "0.19"
 krilla = { version = "0.8.2", default-features = false }
 harfrust = "0.5"
 postgres = "0.19"
+# TLS for the Postgres driver: rustls (no OpenSSL / system TLS library, same stance as tiberius above) with the
+# OS trust store for server-certificate verification.
+tokio-postgres-rustls = { version = "0.14", default-features = false, features = ["aws-lc-rs", "native-certs"] }
+rustls = { version = "0.23", default-features = false, features = ["std", "tls12"] }
 rusqlite = "0.32"
 # SQL Server over TDS. rustls rather than the default native-tls so the build needs no OpenSSL / system TLS
 # library (same "no system library" stance as the bundled SQLite); no winauth/tds80 — SQL logins only.

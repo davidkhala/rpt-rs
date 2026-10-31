@@ -14,6 +14,23 @@
 //! [`rpt_data::cell_to_value`] against the report's declared
 //! [`FieldValueType`](rpt_model::FieldValueType); a binary (blob/bytea) column is fetched raw as
 //! bytes so its data survives intact. So there is no per-Postgres-type extraction code.
+//!
+//! ## TLS
+//!
+//! Connections use TLS (rustls, so no OpenSSL or system TLS library is needed) according to the
+//! connection string's `sslmode`:
+//!
+//! - `disable` — never use TLS.
+//! - `prefer` (the default) — use TLS when the server offers it, otherwise fall back to plaintext.
+//! - `require` — fail unless the connection is encrypted. Use this for any server that is not on the
+//!   local machine or a trusted network, since `prefer` can be downgraded to plaintext.
+//!
+//! Whenever TLS is used, the server certificate and host name are always verified against the
+//! operating system's trust store; there is no option to skip verification. A server with a
+//! private CA or a self-signed certificate therefore needs that certificate installed in the OS
+//! trust store. `verify-ca` / `verify-full` are not accepted — verification is implied. A server that
+//! offers TLS with an untrusted certificate fails under `prefer` too (a failed handshake does not fall
+//! back to plaintext); install its CA or use `sslmode=disable`.
 
 use postgres::fallible_iterator::FallibleIterator;
 use postgres::types::ToSql;
@@ -21,6 +38,31 @@ use rpt_data::{Cell, Column, Row, RowData, RowSource};
 use rpt_model::{Database, Report};
 use rpt_query::{build_query_for_report, build_query_full, Dialect, QueryColumn, SqlQuery, Value};
 use std::collections::{HashMap, HashSet};
+use std::sync::OnceLock;
+use tokio_postgres_rustls::MakeRustlsConnect;
+
+/// The TLS connector shared by every connection: rustls verifying against the OS trust store.
+///
+/// If the trust store yields no certificates at all, an empty root store is used instead. TLS then
+/// fails certificate verification (so `sslmode=require` errors out rather than silently skipping
+/// verification), while a plaintext connection under `sslmode=disable` / `prefer` against a server
+/// without TLS still works.
+fn tls_connector() -> MakeRustlsConnect {
+    static CONNECTOR: OnceLock<MakeRustlsConnect> = OnceLock::new();
+    CONNECTOR
+        .get_or_init(|| {
+            MakeRustlsConnect::with_native_certs()
+                .map(|(connector, _partial_errors)| connector)
+                .unwrap_or_else(|_| {
+                    MakeRustlsConnect::new(
+                        rustls::ClientConfig::builder()
+                            .with_root_certificates(rustls::RootCertStore::empty())
+                            .with_no_client_auth(),
+                    )
+                })
+        })
+        .clone()
+}
 
 /// A failure of the live PostgreSQL path — the shared [`rpt_data::DbError`] aliased to this driver's
 /// error type, so a caller can tell a report with no bound table apart from a genuine connection or
@@ -63,7 +105,7 @@ impl PostgresSource {
             query = query.with_comment(c);
         }
         let mut client =
-            postgres::Client::connect(conn_str, postgres::NoTls).map_err(DbError::connect)?;
+            postgres::Client::connect(conn_str, tls_connector()).map_err(DbError::connect)?;
         Self::run_query_typed(&mut client, &query, database)
     }
 
@@ -91,7 +133,7 @@ impl PostgresSource {
         let query = build_query_full(database, sql_exprs, selection, params, Dialect::Postgres)
             .map_err(|e| DbError::no_query(e.to_string()))?;
         let mut client =
-            postgres::Client::connect(conn_str, postgres::NoTls).map_err(DbError::connect)?;
+            postgres::Client::connect(conn_str, tls_connector()).map_err(DbError::connect)?;
         Self::run_query_typed(&mut client, &query, database)
     }
 
@@ -116,7 +158,7 @@ impl PostgresSource {
         let query = build_query_for_report(report, sql_exprs, selection, params, Dialect::Postgres)
             .map_err(|e| DbError::no_query(e.to_string()))?;
         let mut client =
-            postgres::Client::connect(conn_str, postgres::NoTls).map_err(DbError::connect)?;
+            postgres::Client::connect(conn_str, tls_connector()).map_err(DbError::connect)?;
         Self::run_query_typed(&mut client, &query, &report.database)
     }
 
@@ -289,7 +331,7 @@ impl RowSource for PostgresSource {
 /// [`DbError::Query`] if a statement in `sql` fails.
 pub fn seed(conn_str: &str, sql: &str) -> Result<(), DbError> {
     let mut client =
-        postgres::Client::connect(conn_str, postgres::NoTls).map_err(DbError::connect)?;
+        postgres::Client::connect(conn_str, tls_connector()).map_err(DbError::connect)?;
     client.batch_execute(sql).map_err(DbError::query)?;
     Ok(())
 }
@@ -310,15 +352,15 @@ impl std::fmt::Debug for PostgresConn {
 }
 
 impl PostgresConn {
-    /// Open a connection (no TLS). `conn_str` is libpq/URL form
-    /// (`host=… port=… user=… password=… dbname=…`).
+    /// Open a connection. `conn_str` is libpq/URL form (`host=… port=… user=… password=… dbname=…`);
+    /// TLS is controlled by its `sslmode` (see the [crate docs](crate#tls)).
     ///
     /// # Errors
     ///
     /// [`DbError::Connect`] if the database cannot be opened or reached.
     pub fn connect(conn_str: &str) -> Result<PostgresConn, DbError> {
         Ok(PostgresConn {
-            client: postgres::Client::connect(conn_str, postgres::NoTls)
+            client: postgres::Client::connect(conn_str, tls_connector())
                 .map_err(DbError::connect)?,
         })
     }
@@ -396,6 +438,40 @@ mod tests {
                 .collect(),
             ..Default::default()
         }
+    }
+
+    /// A server that answers the `SSLRequest` with `N` ("no TLS"), then closes. Returns its port.
+    fn server_without_tls() -> u16 {
+        use std::io::{Read, Write};
+        let listener = std::net::TcpListener::bind(("127.0.0.1", 0)).unwrap();
+        let port = listener.local_addr().unwrap().port();
+        std::thread::spawn(move || {
+            if let Ok((mut s, _)) = listener.accept() {
+                let mut request = [0u8; 8];
+                let _ = s.read_exact(&mut request);
+                let _ = s.write_all(b"N");
+            }
+        });
+        port
+    }
+
+    #[test]
+    fn sslmode_require_refuses_a_server_without_tls() {
+        // `require` must fail rather than fall back to plaintext when the server declines TLS.
+        let port = server_without_tls();
+        let conn = format!("host=127.0.0.1 port={port} user=u dbname=d sslmode=require");
+        let err = super::PostgresConn::connect(&conn).unwrap_err();
+        let chain = format!("{err:?}").to_ascii_lowercase();
+        assert!(
+            chain.contains("tls") || chain.contains("ssl"),
+            "expected a TLS refusal, got: {chain}"
+        );
+    }
+
+    #[test]
+    fn sslmode_is_validated() {
+        let err = super::PostgresConn::connect("host=127.0.0.1 port=1 sslmode=bogus").unwrap_err();
+        assert!(format!("{err:?}").contains("sslmode"), "{err:?}");
     }
 
     #[test]

@@ -19,8 +19,8 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 
 ## Summary
 
-- [`Apache-2.0`](#apache-2.0) — 163 crates
-- [`MIT`](#mit) — 34 crates
+- [`Apache-2.0`](#apache-2.0) — 169 crates
+- [`MIT`](#mit) — 35 crates
 - [`MPL-2.0`](#mpl-2.0) — 21 crates
 - [`BSD-3-Clause`](#bsd-3-clause) — 5 crates
 - [`Unicode-3.0`](#unicode-3.0) — 5 crates
@@ -30,7 +30,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 
 ## Apache License 2.0 (`Apache-2.0`)
 
-163 crates are distributed under the terms below:
+169 crates are distributed under the terms below:
 
 - **adler2 2.0.1**
 - **ahash 0.8.12**
@@ -48,6 +48,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **cmov 0.5.4**
 - **connection-string 0.2.0** — Copyright 2020 Yoshua Wuyts
 - **const-oid 0.10.2**
+- **const-oid 0.9.6**
 - **core-foundation 0.10.1**
 - **core-foundation-sys 0.8.7**
 - **core_detect 1.0.0**
@@ -56,6 +57,8 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **crc32fast 1.5.0**
 - **crypto-common 0.2.2**
 - **ctutils 0.4.7**
+- **der 0.7.10**
+- **der_derive 0.7.3**
 - **digest 0.11.3**
 - **encoding_rs 0.8.43**
 - **enumflags2 0.7.12** — Copyright 2017-2023 Maik Klein, Maja Kądziołka
@@ -65,6 +68,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **fallible-iterator 0.3.0**
 - **fallible-streaming-iterator 0.1.9**
 - **fdeflate 0.3.7**
+- **flagset 0.4.7**
 - **flate2 1.1.9**
 - **fnv 1.0.7**
 - **font-types 0.11.3** — Copyright 2019 Colin Rothfels
@@ -156,6 +160,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **smallvec 1.15.2**
 - **smol_str 0.3.6**
 - **socket2 0.6.4**
+- **spki 0.7.3**
 - **stable_deref_trait 1.2.1**
 - **stringprep 0.1.5**
 - **subsetter 0.2.6**
@@ -188,6 +193,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **windows-link 0.2.1** — Copyright (c) Microsoft Corporation.
 - **windows-sys 0.61.2** — Copyright (c) Microsoft Corporation.
 - **write-fonts 0.48.1** — Copyright 2019 Colin Rothfels
+- **x509-cert 0.2.5**
 - **xmp-writer 0.3.3**
 - **yazi 0.2.1**
 - **zeno 0.3.3**
@@ -404,9 +410,9 @@ Apache License
 
 ## MIT License (`MIT`)
 
-34 crates, under 2 variants of these terms.
+35 crates, under 2 variants of these terms.
 
-31 crates are distributed under the terms below:
+32 crates are distributed under the terms below:
 
 - **asynchronous-codec 0.7.0** — Copyright (c) 2019 - 2020 Matt Hunzinger; Copyright (c) 2021 Max Inden
 - **aws-lc-sys 0.47.0** — Copyright (c) 2015-2020 the fiat-crypto authors (see
@@ -433,6 +439,7 @@ Apache License
 - **strict-num 0.1.1** — Copyright (c) 2022 Yevhenii Reizner
 - **synstructure 0.13.2** — Copyright 2016 Nika Layzell
 - **tokio 1.54.1** — Copyright (c) Tokio Contributors
+- **tokio-postgres-rustls 0.14.0** — Copyright (c) 2019 Jasper Hugo
 - **tokio-util 0.7.18** — Copyright (c) Tokio Contributors
 - **tracing 0.1.44** — Copyright (c) 2019 Tokio Contributors
 - **tracing-attributes 0.1.31** — Copyright (c) 2019 Tokio Contributors
