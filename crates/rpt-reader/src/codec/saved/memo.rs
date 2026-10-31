@@ -54,8 +54,10 @@ pub(crate) fn read_memo_cell(heap: &[u8], offset: usize, length: usize) -> Optio
     }
     let data = &heap[offset + ENTRY_PREFIX_LEN..offset + ENTRY_PREFIX_LEN + length];
     let s: String = char::decode_utf16(
-        data.chunks_exact(2)
-            .map(|c| u16::from_le_bytes([c[0], c[1]]))
+        data.as_chunks::<2>()
+            .0
+            .iter()
+            .map(|c| u16::from_le_bytes(*c))
             .take_while(|&u| u != 0),
     )
     .map(|r| r.unwrap_or('\u{FFFD}'))
