@@ -19,22 +19,24 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 
 ## Summary
 
-- [`Apache-2.0`](#apache-2.0) — 137 crates
-- [`MIT`](#mit) — 25 crates
-- [`MPL-2.0`](#mpl-2.0) — 20 crates
+- [`Apache-2.0`](#apache-2.0) — 163 crates
+- [`MIT`](#mit) — 34 crates
+- [`MPL-2.0`](#mpl-2.0) — 21 crates
+- [`BSD-3-Clause`](#bsd-3-clause) — 5 crates
 - [`Unicode-3.0`](#unicode-3.0) — 5 crates
+- [`ISC`](#isc) — 4 crates
 - [`BSD-2-Clause`](#bsd-2-clause) — 1 crate
-- [`BSD-3-Clause`](#bsd-3-clause) — 1 crate
 - [`Zlib`](#zlib) — 1 crate
 
 ## Apache License 2.0 (`Apache-2.0`)
 
-137 crates are distributed under the terms below:
+163 crates are distributed under the terms below:
 
 - **adler2 2.0.1**
 - **ahash 0.8.12**
 - **arrayvec 0.7.8**
 - **async-trait 0.1.89**
+- **aws-lc-sys 0.47.0**
 - **base64 0.22.1**
 - **bitflags 2.13.0**
 - **block-buffer 0.12.1**
@@ -42,15 +44,22 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **bytemuck 1.25.0**
 - **bytemuck_derive 1.10.2**
 - **cfg-if 1.0.4**
-- **chacha20 0.10.1**
+- **chacha20 0.10.2**
 - **cmov 0.5.4**
+- **connection-string 0.2.0** — Copyright 2020 Yoshua Wuyts
 - **const-oid 0.10.2**
+- **core-foundation 0.10.1**
+- **core-foundation-sys 0.8.7**
+- **core_detect 1.0.0**
 - **cosmic-text 0.19.0**
 - **cpufeatures 0.3.0**
 - **crc32fast 1.5.0**
 - **crypto-common 0.2.2**
-- **ctutils 0.4.2**
+- **ctutils 0.4.7**
 - **digest 0.11.3**
+- **encoding_rs 0.8.43**
+- **enumflags2 0.7.12** — Copyright 2017-2023 Maik Klein, Maja Kądziołka
+- **enumflags2_derive 0.7.12** — Copyright [2017] [Maik Klein]
 - **equivalent 1.0.2**
 - **fallible-iterator 0.2.0**
 - **fallible-iterator 0.3.0**
@@ -61,8 +70,11 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **font-types 0.11.3** — Copyright 2019 Colin Rothfels
 - **futures-channel 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
 - **futures-core 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
+- **futures-io 0.3.34** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
+- **futures-macro 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
 - **futures-sink 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
 - **futures-task 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
+- **futures-timer 3.0.4**
 - **futures-util 0.3.32** — Copyright (c) 2016 Alex Crichton; Copyright (c) 2017 The Tokio Authors
 - **getrandom 0.4.3**
 - **gif 0.14.2**
@@ -87,6 +99,8 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **metafile 0.4.0** — Copyright 2026 Martin Srsen
 - **miette 7.6.0**
 - **miniz_oxide 0.8.9**
+- **miniz_oxide 0.9.1**
+- **multiversion_no_op 1.0.0**
 - **num 0.4.3**
 - **num-bigint 0.4.8**
 - **num-complex 0.4.6**
@@ -97,6 +111,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **objc2-core-foundation 0.3.2**
 - **objc2-system-configuration 0.3.2**
 - **once_cell 1.21.4**
+- **openssl-probe 0.2.2**
 - **parking_lot 0.12.5**
 - **parking_lot_core 0.9.12**
 - **pdf-writer 0.15.0**
@@ -112,23 +127,29 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **quick-error 2.0.1**
 - **quote 1.0.46**
 - **rand 0.10.2**
-- **rand_chacha 0.9.0**
+- **rand_chacha 0.10.0**
 - **rand_core 0.10.1**
-- **rand_core 0.9.5**
 - **rangemap 1.7.1** — Copyright 2019-2022 Jeff Parsons, and [contributors](https://github.com/jeffparsons/rangemap/contributors)
 - **read-fonts 0.37.0** — Copyright 2019 Colin Rothfels
 - **read-fonts 0.39.2** — Copyright 2019 Colin Rothfels
 - **roxmltree 0.20.0**
 - **rustc-hash 2.1.3**
+- **rustls 0.23.46**
+- **rustls-native-certs 0.8.5**
+- **rustls-pki-types 1.15.1** — Copyright 2023 Dirkjan Ochtman
 - **ryu 1.0.23**
 - **scopeguard 1.2.0**
 - **sea-query 0.32.7**
+- **secrecy 0.10.3**
+- **security-framework 3.7.0**
+- **security-framework-sys 2.17.0**
 - **self_cell 1.2.2**
-- **serde 1.0.228**
-- **serde_core 1.0.228**
-- **serde_derive 1.0.228**
-- **serde_json 1.0.150**
+- **serde 1.0.229**
+- **serde_core 1.0.229**
+- **serde_derive 1.0.229**
+- **serde_json 1.0.151**
 - **sha2 0.11.0**
+- **simdutf8 0.1.5**
 - **siphasher 1.0.3**
 - **skrifa 0.40.0** — Copyright 2019 Colin Rothfels
 - **skrifa 0.42.1** — Copyright 2019 Colin Rothfels
@@ -140,12 +161,16 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **subsetter 0.2.6**
 - **swash 0.2.9**
 - **syn 2.0.118**
+- **syn 3.0.3**
 - **sys-locale 0.3.2**
 - **thiserror 2.0.18**
 - **thiserror-impl 2.0.18**
+- **tiberius 0.13.0** — Copyright 2021 Tiberius Contributors
+- **tiberius-macros 0.1.0**
 - **tinyvec 1.11.0**
 - **tinyvec_macros 0.1.1** — Copyright 2020 Tomasz "Soveu" Marx
 - **tokio-postgres 0.7.18**
+- **tokio-rustls 0.26.6** — Copyright 2017 quininer kel
 - **ttf-parser 0.25.1**
 - **typenum 1.20.1** — Copyright 2014 Paho Lurie-Gregg
 - **unicode-bidi 0.3.18**
@@ -157,6 +182,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **unicode-segmentation 1.13.3**
 - **unicode-width 0.1.14**
 - **uuid 1.23.4**
+- **web-time 1.1.0** — Copyright 2023 dAxpeDDa
 - **weezl 0.1.12**
 - **whoami 2.1.2**
 - **windows-link 0.2.1** — Copyright (c) Microsoft Corporation.
@@ -166,6 +192,7 @@ Regenerate with `scripts/gen-third-party-notices.sh`.
 - **yazi 0.2.1**
 - **zeno 0.3.3**
 - **zerocopy 0.8.52** — Copyright 2023 The Fuchsia Authors
+- **zeroize 1.9.1**
 - **zune-core 0.5.1**
 - **zune-jpeg 0.5.15**
 
@@ -377,14 +404,16 @@ Apache License
 
 ## MIT License (`MIT`)
 
-25 crates, under 2 variants of these terms.
+34 crates, under 2 variants of these terms.
 
-23 crates are distributed under the terms below:
+31 crates are distributed under the terms below:
 
+- **asynchronous-codec 0.7.0** — Copyright (c) 2019 - 2020 Matt Hunzinger; Copyright (c) 2021 Max Inden
+- **aws-lc-sys 0.47.0** — Copyright (c) 2015-2020 the fiat-crypto authors (see
 - **byteorder 1.5.0** — Copyright (c) 2015 Andrew Gallant
 - **byteorder-lite 0.1.0** — Copyright (c) 2015 Andrew Gallant
 - **bytes 1.12.0** — Copyright (c) 2018 Carl Lerche
-- **cfb 0.10.0** — Copyright (c) 2017 Matthew D. Steele
+- **cfb 0.14.0** — Copyright (c) 2017 Matthew D. Steele
 - **color_quant 1.1.0** — Copyright (c) 2016 PistonDevelopers
 - **core_maths 0.1.1** — Copyright (c) 2024 Robert Bastian
 - **float-cmp 0.9.0** — Copyright (c) 2014-2020 Optimal Computing (NZ) Ltd
@@ -396,12 +425,18 @@ Apache License
 - **libsqlite3-sys 0.30.1** — Copyright (c) 2014-2021 The rusqlite developers
 - **memchr 2.8.2** — Copyright (c) 2015 Andrew Gallant
 - **mio 1.2.1** — Copyright (c) 2014 Carl Lerche and other MIO contributors
+- **pretty-hex 0.4.2** — Copyright (c) 2018 Andrei Volnin
 - **rusqlite 0.32.1** — Copyright (c) 2014-2021 The rusqlite developers
+- **schannel 0.1.30** — Copyright (c) 2015 steffengy
 - **simd-adler32 0.3.9** — Copyright (c) [2021] [Marvin Countryman]
+- **slab 0.4.12** — Copyright (c) 2019 Carl Lerche
 - **strict-num 0.1.1** — Copyright (c) 2022 Yevhenii Reizner
 - **synstructure 0.13.2** — Copyright 2016 Nika Layzell
-- **tokio 1.52.3** — Copyright (c) Tokio Contributors
+- **tokio 1.54.1** — Copyright (c) Tokio Contributors
 - **tokio-util 0.7.18** — Copyright (c) Tokio Contributors
+- **tracing 0.1.44** — Copyright (c) 2019 Tokio Contributors
+- **tracing-attributes 0.1.31** — Copyright (c) 2019 Tokio Contributors
+- **tracing-core 0.1.36** — Copyright (c) 2014 Mathijs van de Nes
 - **winnow 0.6.24**
 - **zmij 1.0.21**
 
@@ -461,11 +496,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Mozilla Public License 2.0 (`MPL-2.0`)
 
-20 crates are distributed under the terms below:
+21 crates are distributed under the terms below:
 
 - **meridian-seed 0.4.0**
 - **rpt-cli 0.4.0**
 - **rpt-data 0.4.0**
+- **rpt-db-mssql 0.4.0**
 - **rpt-db-postgres 0.4.0**
 - **rpt-db-sqlite 0.4.0**
 - **rpt-format-value 0.4.0**
@@ -862,6 +898,152 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
   defined by the Mozilla Public License, v. 2.0.
 ```
 
+## BSD 3-Clause "New" or "Revised" License (`BSD-3-Clause`)
+
+5 crates, under 3 variants of these terms.
+
+3 crates are distributed under the terms below:
+
+- **aws-lc-sys 0.47.0**
+- **encoding_rs 0.8.43** — Copyright © WHATWG (Apple, Google, Mozilla, Microsoft).
+- **subtle 2.6.1** — Copyright (c) 2016-2017 Isis Agora Lovecruft, Henry de Valence. All rights reserved.; Copyright (c) 2016-2024 Isis Agora Lovecruft. All rights reserved.
+
+Terms, reproduced from the copy shipped by `subtle 2.6.1`:
+
+```
+Copyright (c) 2016-2017 Isis Agora Lovecruft, Henry de Valence. All rights reserved.
+Copyright (c) 2016-2024 Isis Agora Lovecruft. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+1 crate is distributed under the terms below:
+
+- **encoding_rs 0.8.43**
+
+Terms, reproduced from the copy shipped by `encoding_rs 0.8.43`:
+
+```
+// Copyright © WHATWG (Apple, Google, Mozilla, Microsoft).
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice, this
+//    list of conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice,
+//    this list of conditions and the following disclaimer in the documentation
+//    and/or other materials provided with the distribution.
+//
+// 3. Neither the name of the copyright holder nor the names of its
+//    contributors may be used to endorse or promote products derived from
+//    this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+/// The PUA code points special-cased in the GB18030 encoder.
+pub(crate) static GB18030_2022_OVERRIDE_PUA: [u16; 18] = [
+    0xE78D, 0xE78E, 0xE78F, 0xE790, 0xE791, 0xE792, 0xE793, 0xE794, 0xE795, 0xE796, 0xE81E, 0xE826,
+    0xE82B, 0xE82C, 0xE832, 0xE843, 0xE854, 0xE864,
+];
+
+/// The bytes corresponding to the PUA code points special-cased in the GB18030 encoder.
+pub(crate) static GB18030_2022_OVERRIDE_BYTES: [[u8; 2]; 18] = [
+    [0xA6, 0xD9],
+    [0xA6, 0xDA],
+    [0xA6, 0xDB],
+    [0xA6, 0xDC],
+    [0xA6, 0xDD],
+    [0xA6, 0xDE],
+    [0xA6, 0xDF],
+    [0xA6, 0xEC],
+    [0xA6, 0xED],
+    [0xA6, 0xF3],
+    [0xFE, 0x59],
+    [0xFE, 0x61],
+    [0xFE, 0x66],
+    [0xFE, 0x67],
+    [0xFE, 0x6D],
+    [0xFE, 0x7E],
+    [0xFE, 0x90],
+    [0xFE, 0xA0],
+];
+```
+
+1 crate is distributed under the terms below:
+
+- **tiny-skia-path 0.12.0** — Copyright (c) 2011 Google Inc. All rights reserved.; Copyright (c) 2020 Yevhenii Reizner All rights reserved.
+
+Terms, reproduced from the copy shipped by `tiny-skia-path 0.12.0`:
+
+```
+Copyright (c) 2011 Google Inc. All rights reserved.
+Copyright (c) 2020 Yevhenii Reizner All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+  * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+  * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+
+  * Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
 ## Unicode License v3 (`Unicode-3.0`)
 
 5 crates, under 2 variants of these terms.
@@ -972,6 +1154,77 @@ dealings in these Data Files or Software without prior written
 authorization of the copyright holder.
 ```
 
+## ISC License (`ISC`)
+
+4 crates, under 3 variants of these terms.
+
+2 crates are distributed under the terms below:
+
+- **aws-lc-rs 1.19.0**
+- **aws-lc-sys 0.47.0**
+
+Terms, reproduced from the copy shipped by `aws-lc-rs 1.19.0`:
+
+```
+ISC License
+
+Copyright <year> <owner> 
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+1 crate is distributed under the terms below:
+
+- **untrusted 0.9.0**
+
+Terms, reproduced from the copy shipped by `untrusted 0.9.0`:
+
+```
+// Copyright 2015-2016 Brian Smith.
+//
+// Permission to use, copy, modify, and/or distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+//
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHORS DISCLAIM ALL WARRANTIES
+// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR
+// ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+// OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+1 crate is distributed under the terms below:
+
+- **rustls-webpki 0.103.16** — Copyright 2015 Brian Smith.
+
+Terms, reproduced from the copy shipped by `rustls-webpki 0.103.16`:
+
+```
+Except as otherwise noted, this project is licensed under the following
+(ISC-style) terms:
+
+Copyright 2015 Brian Smith.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHORS DISCLAIM ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+The files under third-party/chromium are licensed as described in
+third-party/chromium/LICENSE.
+```
+
 ## BSD 2-Clause "Simplified" License (`BSD-2-Clause`)
 
 1 crate is distributed under the terms below:
@@ -1001,47 +1254,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
 A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
 HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-
-## BSD 3-Clause "New" or "Revised" License (`BSD-3-Clause`)
-
-1 crate is distributed under the terms below:
-
-- **tiny-skia-path 0.12.0** — Copyright (c) 2011 Google Inc. All rights reserved.; Copyright (c) 2020 Yevhenii Reizner All rights reserved.
-
-Terms, reproduced from the copy shipped by `tiny-skia-path 0.12.0`:
-
-```
-Copyright (c) 2011 Google Inc. All rights reserved.
-Copyright (c) 2020 Yevhenii Reizner All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-  * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-
-  * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the
-    distribution.
-
-  * Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
 SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
 LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
 DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
