@@ -45,7 +45,7 @@ pub enum MssqlError {
     #[error("invalid SQL Server URL: {0}")]
     Url(String),
     /// The TCP connection failed or timed out.
-    #[error("network error: {0}")]
+    #[error("network error")]
     Io(#[from] std::io::Error),
     /// The server or the TDS protocol reported an error (login, TLS, syntax, a missing table, …).
     #[error("{0}")]
