@@ -26,6 +26,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- The last unrecognized record type in the corpus, `0x32` in the `ReportParametersStream`, is now named
+  `GroupValueRecord`. It describes one group instance: its condition field and value, first record and record count.
+  Reports carrying one (`Top5USA_piechart.rpt`, `USAvsFrance.rpt`) no longer warn "1 record(s) were not
+  recognized". The record is named for recognition only; nothing new reaches the model.
 - A suppressed page footer no longer reserves room at the bottom of the page body. Its design height was held back
   whether or not it printed, so content pinned to the bottom of the page (a footer with "Print at Bottom of Page") sat
   that much too high.

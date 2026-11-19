@@ -129,12 +129,12 @@ Practically every record type that occurs in the corpus is **identified and name
 (`RecordTag::name(dialect)`, which takes the stream's record vocabulary because a type number means different records in
 `Contents`, `QESession`, the saved-data catalog and the saved parameter values). Across the committed corpus — 154
 reports: the 128 decode fixtures under `tests/fixtures/reports/` plus the 26 under `tests/meridian/` — the `Contents`
-and `QESession` streams of every report, main and subreport alike, are fully named, and a single record type anywhere in
-the streams walked as records is still `Unknown`: **`0x32` in the `ReportParametersStream`**, 2 records in 2 reports.
-(The `DataSourceManager`
-catalog is read by another route and is not measured here — see [above](#the-three-partial-streams).) A corpus sweep in
-`rpt-reader` holds that exception list exactly, so a report introducing an unidentified type fails a test rather than
-widening the gap unnoticed. The named types include the rare codes `0x017e`/`0x017f`
+and `QESession` streams of every report, main and subreport alike, are fully named, and **no record type anywhere in the
+streams walked as records is still `Unknown`**. The last one, `0x32` in the `ReportParametersStream` (2 records in 2
+reports), is named `GroupValueRecord` — see the [block catalog](../format/06-block-catalog.md#0x0032--groupvaluerecord-in-reportparametersstream).
+(The `DataSourceManager` catalog is read by another route and is not measured here — see
+[above](#the-three-partial-streams).) A corpus sweep in `rpt-reader` holds an exception list of unnamed types, now empty,
+so a report introducing an unidentified type fails a test rather than widening the gap unnoticed. The named types include the rare codes `0x017e`/`0x017f`
 (`CrossTabCustomMembersBegin`/`CrossTabCustomMembersEnd`, the bracket around a cross-tab's custom-group-members
 collection; the opener states how many members the bracket holds and every one in the corpus states none, which is why
 the per-member detail records `0x0180`/`0x0181` do not occur there). Naming these types is format-completeness work,
@@ -144,7 +144,7 @@ cannot see them.
 Which walk a count came from decides what it can claim, and the two here differ. The `rpt-reader` sweep re-decodes each
 subreport's own streams, which is what lets the paragraph above say "main and subreport alike". `rpt streams`
 does not: only a top-level `Contents` is tiled, so a `Subdocument N/Contents` reports zero records. Over the same 154
-reports it sees **55,829 outermost records, 106,950 in the trees, 2 unrecognized, 0 bytes covered by no record** — a
+reports it sees **55,829 outermost records, 106,950 in the trees, 0 unrecognized, 0 bytes covered by no record** — a
 floor on the sweep's reach, not the whole of it.
 
 Coverage comes in two grades:

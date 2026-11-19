@@ -576,6 +576,37 @@ One parameter's saved **current value**: a global parameter index plus per-type 
 `0x007a` ParamRecord definitions by that index. `ReportParametersStream` is a TSLV record stream decoded through the
 same pipeline as `Contents`.
 
+### `0x0032` — GroupValueRecord (in `ReportParametersStream`)
+
+One **group instance**, written at schema `0x0702` in the slot of an entry that a `0x0031` CurrentValueRecord otherwise
+takes: `DataSourceParameterEntry(0x3b) · DataSourceParameterValue(0x30) · GroupValueRecord(0x32) ·
+FormulaFieldWrapper(0x77) · DataSourceParameterValueEnd(0x33) · DataSourceParameterEntryEnd(0x3c)`. Named for
+recognition only; nothing reaches the model.
+
+Offsets are within the record's own (demasked) field bytes, as `rpt dump` shows them; the value's offsets assume a
+23-byte condition-field string, as in both samples.
+
+| Offset | Type      | Field                                                                          |
+|--------|-----------|--------------------------------------------------------------------------------|
+| `0x00` | `u16` BE  | unknown — `0x0001` in both samples                                             |
+| `0x02` | `u32` BE  | the group's first record, 0-based, in the report's sorted record order         |
+| `0x06` | `u32` BE  | the group's record count                                                       |
+| `0x0a` | `u16` BE  | unknown — `0` in both samples                                                  |
+| `0x0c` | lp-string | the group's condition field (`Customer.Customer Name`)                         |
+| `0x27` | 3 bytes   | unknown — zero in both samples                                                 |
+| `0x2a` | `u32` BE  | the value's byte length (equal to the length prefix that follows)              |
+| `0x2e` | lp-string | the group's value                                                              |
+| …      | 22 bytes  | not read — `00 00 00 01 00 00 ff ff 00 00 00 00 00 01` then zeros; the last byte is `3` in `Top5USA` (the group's index again) and `0` in `USAvsFrance` |
+
+The evidence is `benbrahim777/Top5USA_piechart.rpt`, which groups on `Customer.Customer Name` with a Top-5 sort on
+`Sum ({Orders.Order Amount}, …)`. Its record names `The Great Bike Shop` with first record **91** and count **27**,
+and the saved data agrees on both: that customer ranks fourth (index 3), the three groups above it hold 33 + 29 + 29 =
+91 records, and it holds 27 of its own. The `0x30` record before it ends in a long of **3**, the group's index, and
+so does this record's last byte.
+`USAvsFrance.rpt` carries the same layout for `Paris Mountain Sports` (first record 0, count 20); that value belongs to
+its France subreport, which has no saved rows, so this second sample is consistent but unconfirmed. Likely saved
+group-tree / drill-down state, though no sample isolates which.
+
 ### `0x0178` — SaveMetadata
 
 One save-time environment key/value pair, one record per save event, kept in stream order.
@@ -611,8 +642,9 @@ exactly that many `0x0180`…`0x0181` member pairs before the closing `0x017f`. 
 not it has custom members, so every collection in the corpus states none and the member records are absent). A record
 type the registry has not seen is preserved verbatim as an `Unknown` node so the round-trip stays lossless. The
 [support matrix](../reader/02-support-matrix.md) tracks which types are fully **decoded into the model** vs **named for
-recognition** (structural bracket/wrapper records and opaque render state carry nothing a reader needs), and names the
-one record type still `Unknown` corpus-wide — `0x32` in the `ReportParametersStream`.
+recognition** (structural bracket/wrapper records and opaque render state carry nothing a reader needs). No record
+type is still `Unknown` corpus-wide; the last one was `0x32` in the `ReportParametersStream`, now
+[`GroupValueRecord`](#0x0032--groupvaluerecord-in-reportparametersstream).
 
 ## Feature areas: modelling depth
 

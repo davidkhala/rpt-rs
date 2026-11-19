@@ -144,7 +144,8 @@ impl RecordTag {
     /// Per-parameter shape: `DataSourceParameterEntry(0x3b) · DataSourceParameterValue(0x30) ·
     /// CurrentValueRecord(0x31) · FormulaFieldWrapper(0x77) · DataSourceParameterValueEnd(0x33) ·
     /// DataSourceParameterEntryEnd(0x3c)`, bracketed by the stream's header and footer. The
-    /// `CurrentValueRecord` is written only for a parameter that has a saved value.
+    /// `CurrentValueRecord` is written only for a parameter that has a saved value. A
+    /// `GroupValueRecord(0x32)` can take its place in the same slot.
     fn report_parameters_name(self) -> Option<&'static str> {
         match self.0 {
             0xFFFF => Some("StreamHeader"),
@@ -155,6 +156,11 @@ impl RecordTag {
             0x0030 => Some("DataSourceParameterValue"),
             0x0033 => Some("DataSourceParameterValueEnd"),
             0x0031 => Some("CurrentValueRecord"),
+            // One group instance, in the slot a `CurrentValueRecord` takes: a word, the group's first
+            // record (0-based, in sorted order) and its record count as longs, a word, then the
+            // group's condition field name and its value as lp-strings. The `0x30` before it states
+            // the group's path. Named for recognition only; nothing reaches the model.
+            0x0032 => Some("GroupValueRecord"),
             // The report definition's own formula wrapper, streamed here by the archive machinery
             // the two streams share. A parameter entry carries an empty one: no formula body, only
             // the runtime cache words its `Contents` counterpart ends with.
@@ -614,6 +620,7 @@ mod tests {
     fn a_parameter_values_number_is_not_named_in_the_report_definition() {
         for (rtype, name) in [
             (0x0031u16, "CurrentValueRecord"),
+            (0x0032, "GroupValueRecord"),
             (0x0030, "DataSourceParameterValue"),
             (0x0033, "DataSourceParameterValueEnd"),
             (0x003b, "DataSourceParameterEntry"),
@@ -690,9 +697,10 @@ mod tests {
         assert_eq!(RecordTag(0x00e5).name(Dialect::Catalog), None);
     }
 
-    /// The one record type the corpus contains that the registry does not name, as
+    /// The record types the corpus contains that the registry does not name, as
     /// `(dialect, type)`. The list is the claim: naming coverage is complete apart from these.
-    const UNNAMED_IN_CORPUS: &[(Dialect, u16)] = &[(Dialect::ReportParameters, 0x0032)];
+    /// It is empty: every record type the corpus uses is named.
+    const UNNAMED_IN_CORPUS: &[(Dialect, u16)] = &[];
 
     /// Naming coverage of the record streams, stated as an exhaustive list of what is *not* named.
     ///

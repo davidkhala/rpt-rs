@@ -66,11 +66,12 @@ const QE_SESSION_UNSTATED: &[u16] = &[
 /// [`REPORT_PARAMETERS_SCHEMAS`] — the version of the records making up one parameter's saved entry.
 const REPORT_PARAMETERS_SCHEMA: u16 = 0x0701;
 
-/// The `ReportParametersStream` record types written at a version of their own: the two carrying a
-/// parameter's saved current value, and the pair bracketing the stream.
+/// The `ReportParametersStream` record types written at a version of their own: the two that can
+/// fill an entry's value slot (a saved current value, or a group instance), and the pair
+/// bracketing the stream.
 const REPORT_PARAMETERS_SCHEMAS: &[(u16, u16)] = &[
     (0x0031, 0x0702), // CurrentValueRecord
-    (0x0032, 0x0702),
+    (0x0032, 0x0702), // GroupValueRecord
     (0x012f, 0x0700), // DataSourceParametersHeader
     (0x0130, 0x0700), // DataSourceParametersFooter
 ];
